@@ -4,7 +4,7 @@ This guide describes how to make Kino custom objects compatible with Interact.
 
 ## Clip naming
 
-Animation clips must use the following format:
+Animation clips must use the following format (name):
 
 ```text
 Interact_<Action>_<ID>
