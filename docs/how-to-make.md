@@ -168,7 +168,7 @@ Interact_Loop_Fan
 
 The Kino object must have at least one of the following on itself or its children:
 
-* `Collider`
+* `Collider` (trigger mode recommended).
 * enabled `Renderer`
 
 This allows Interact to detect the object when the player points at it.
