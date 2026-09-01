@@ -15,6 +15,7 @@ Supported actions:
 ```text
 Open
 Close
+Loop
 ```
 
 Examples:
@@ -28,20 +29,12 @@ Interact_Close_Rear_Left_Door
 
 Interact_Open_Hood
 Interact_Open_Trunk
+
+Interact_Loop_Fan
+Interact_Loop_RotatingObject
 ```
-
-`Interact_Open_<ID>` is required.
-
-`Interact_Close_<ID>` is optional.
 
 The `ID` identifies the interactive object and may contain underscores.
-
-Open and Close animations for the same object must use exactly the same ID:
-
-```text
-Interact_Open_DriverDoor
-Interact_Close_DriverDoor
-```
 
 Each interaction ID must be unique within the car.
 
@@ -66,6 +59,15 @@ A separate Close animation is not required.
 
 If only the Open animation exists, Interact automatically uses it in reverse to close the object.
 
+### Loop setting
+
+It is recommended to keep the `Loop` option disabled on Open animation clips.
+
+Open animations are expected to play once and stop at their final state.
+
+> **Note:** Interact automatically disables looping for `Open` animations at runtime, regardless of the animation clip's Loop setting.
+
+---
 
 ## Close animation
 
@@ -91,6 +93,47 @@ Interact_Close_DriverDoor
 
 The final pose of `Open` and the initial pose of `Close` must match.
 
+### Loop setting
+
+It is recommended to keep the `Loop` option disabled on Close animation clips.
+
+> **Note:** Interact automatically disables looping for `Close` animations at runtime, regardless of the animation clip's Loop setting.
+
+---
+
+## Loop animation
+
+Use the `Loop` action for animations that should continuously repeat while enabled.
+
+Format:
+
+```text
+Interact_Loop_<ID>
+```
+
+Examples:
+
+```text
+Interact_Loop_Fan
+Interact_Loop_RotatingObject
+Interact_Loop_Wheel
+```
+
+Loop interactions work as an on/off toggle:
+
+```text
+Click → Start looping
+Click again → Stop
+```
+
+This is intended for continuously animated objects such as rotating or moving parts.
+
+It is recommended to enable the `Loop` option on Loop animation clips.
+
+> **Note:** Interact automatically enables looping for `Loop` animations at runtime, regardless of the animation clip's Loop setting.
+
+Because of this, manually setting the Loop option correctly is recommended for consistency, but is not required for Interact to work.
+
 ---
 
 ## Animator setup
@@ -107,8 +150,19 @@ State:
 Interact_Open_DriverDoor
 ```
 
-The same applies to the Close animation.
+The same rule applies to `Open`, `Close`, and `Loop` animations.
 
+Example:
+
+```text
+Clip:
+Interact_Loop_Fan
+
+State:
+Interact_Loop_Fan
+```
+
+---
 
 ## Object selection
 
@@ -121,7 +175,9 @@ This allows Interact to detect the object when the player points at it.
 
 ---
 
-## Quick example
+## Quick examples
+
+### Open / Close
 
 A door with a single animation:
 
@@ -143,3 +199,13 @@ Both clips use the same interaction ID:
 ```text
 DriverDoor
 ```
+
+### Loop
+
+For a continuously animated object:
+
+```text
+Interact_Loop_Fan
+```
+
+The first interaction starts the animation and the next interaction stops it.
