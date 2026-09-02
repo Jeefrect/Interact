@@ -4,10 +4,10 @@ This guide describes how to make Kino custom objects compatible with Interact.
 
 ## Clip naming
 
-Animation clips must use the following format (name):
+Use this naming format for new animations:
 
 ```text
-Interact_<Action>_<ID>
+[<Action>[_<Group>]]<ID>
 ```
 
 Supported actions:
@@ -18,25 +18,76 @@ Close
 Loop
 ```
 
-Examples:
+`Group` is optional.
+
+Examples of standalone interactions:
 
 ```text
-Interact_Open_DriverDoor
-Interact_Close_DriverDoor
+[Open]Hood
+[Close]Hood
 
-Interact_Open_Rear_Left_Door
-Interact_Close_Rear_Left_Door
+[Open]Rear_Left_Door
+[Close]Rear_Left_Door
 
-Interact_Open_Hood
-Interact_Open_Trunk
+[Open]Trunk
 
-Interact_Loop_Fan
-Interact_Loop_RotatingObject
+[Loop]Fan
+[Loop]RotatingObject
 ```
 
-The `ID` identifies the interactive object and may contain underscores.
+Examples of linked objects:
 
-Each interaction ID must be unique within the car.
+```text
+[Open_Doors]LeftDoor
+[Close_Doors]LeftDoor
+
+[Open_Doors]RightDoor
+[Close_Doors]RightDoor
+```
+
+The `ID` identifies the clickable object and may contain underscores.
+
+- Without a group, the interaction affects only its own object.
+- Objects with the same `Group` are switched together.
+- An object ID must be unique within its group.
+- The same group must contain either `Open`/`Close` interactions or `Loop` interactions; do not mix both types.
+
+The old format is still supported for compatibility, but does not support groups:
+
+```text
+Interact_Open_Hood
+Interact_Close_Hood
+Interact_Loop_Fan
+```
+
+---
+
+## Linked groups
+
+A group lets multiple independent objects react to one click.
+
+Example: two doors that should open and close together:
+
+```text
+[Open_Doors]LeftDoor
+[Close_Doors]LeftDoor
+
+[Open_Doors]RightDoor
+[Close_Doors]RightDoor
+```
+
+Clicking either door starts both door animations at the same time. Clicking again closes or reverses both doors.
+
+Each object still uses its own animation clip, so animation lengths may differ.
+
+Groups also work with loops:
+
+```text
+[Loop_RadiatorFans]LeftFan
+[Loop_RadiatorFans]RightFan
+```
+
+Clicking either fan starts both loops. Clicking again stops both.
 
 ---
 
@@ -52,29 +103,33 @@ Last frame  → Open
 Example:
 
 ```text
-Interact_Open_Hood
+[Open]Hood
 ```
 
-A separate Close animation is not required.
-
-If only the Open animation exists, Interact automatically uses it in reverse to close the object.
+A separate Close animation is not required. If only the Open animation exists, Interact plays it in reverse to close the object.
 
 ### Loop setting
 
-It is recommended to keep the `Loop` option disabled on Open animation clips.
+Keep the `Loop` option disabled for Open clips.
 
-Open animations are expected to play once and stop at their final state.
-
-> **Note:** Interact automatically disables looping for `Open` animations at runtime, regardless of the animation clip's Loop setting.
+> **Note:** Interact forces Open clips to play once at runtime, regardless of the source clip's Loop setting.
 
 ---
 
 ## Close animation
 
-If you want to use a separate closing animation, create:
+To use a separate closing animation, create a matching Close clip:
 
 ```text
-Interact_Close_<ID>
+[Open]DriverDoor
+[Close]DriverDoor
+```
+
+For grouped objects, both the group and ID must match:
+
+```text
+[Open_Doors]LeftDoor
+[Close_Doors]LeftDoor
 ```
 
 The Close animation must go from the fully open state back to the closed state:
@@ -84,39 +139,24 @@ First frame → Open
 Last frame  → Closed
 ```
 
-Example pair:
-
-```text
-Interact_Open_DriverDoor
-Interact_Close_DriverDoor
-```
-
-The final pose of `Open` and the initial pose of `Close` must match.
+The last pose of Open and the first pose of Close must match.
 
 ### Loop setting
 
-It is recommended to keep the `Loop` option disabled on Close animation clips.
+Keep the `Loop` option disabled for Close clips.
 
-> **Note:** Interact automatically disables looping for `Close` animations at runtime, regardless of the animation clip's Loop setting.
+> **Note:** Interact forces Close clips to play once at runtime, regardless of the source clip's Loop setting.
 
 ---
 
 ## Loop animation
 
-Use the `Loop` action for animations that should continuously repeat while enabled.
-
-Format:
+Use `Loop` for animations that continuously repeat while enabled:
 
 ```text
-Interact_Loop_<ID>
-```
-
-Examples:
-
-```text
-Interact_Loop_Fan
-Interact_Loop_RotatingObject
-Interact_Loop_Wheel
+[Loop]Fan
+[Loop]RotatingObject
+[Loop]Wheel
 ```
 
 Loop interactions work as an on/off toggle:
@@ -126,41 +166,44 @@ Click → Start looping
 Click again → Stop
 ```
 
-This is intended for continuously animated objects such as rotating or moving parts.
+For grouped loops:
 
-It is recommended to enable the `Loop` option on Loop animation clips.
+```text
+[Loop_Lights]LeftLight
+[Loop_Lights]RightLight
+```
 
-> **Note:** Interact automatically enables looping for `Loop` animations at runtime, regardless of the animation clip's Loop setting.
+Clicking either object controls the whole `Lights` group.
 
-Because of this, manually setting the Loop option correctly is recommended for consistency, but is not required for Interact to work.
+> **Note:** Interact enables looping for Legacy `Animation` clips at runtime. For `Animator`, Interact restarts the state as needed.
 
 ---
 
 ## Animator setup
 
-If you use an `Animator`, layer `0` must contain a state whose name exactly matches the animation clip name.
+If using an `Animator`, layer `0` must contain a state whose name exactly matches the clip name.
 
 Example:
 
 ```text
 Clip:
-Interact_Open_DriverDoor
+[Open]DriverDoor
 
 State:
-Interact_Open_DriverDoor
+[Open]DriverDoor
 ```
 
-The same rule applies to `Open`, `Close`, and `Loop` animations.
-
-Example:
+Grouped example:
 
 ```text
 Clip:
-Interact_Loop_Fan
+[Open_Doors]LeftDoor
 
 State:
-Interact_Loop_Fan
+[Open_Doors]LeftDoor
 ```
+
+The same rule applies to Open, Close, and Loop animations.
 
 ---
 
@@ -168,8 +211,8 @@ Interact_Loop_Fan
 
 The Kino object must have at least one of the following on itself or its children:
 
-* `Collider` (trigger mode recommended).
-* enabled `Renderer`
+- `Collider` — trigger mode is recommended.
+- Enabled `Renderer`.
 
 This allows Interact to detect the object when the player points at it.
 
@@ -177,35 +220,34 @@ This allows Interact to detect the object when the player points at it.
 
 ## Quick examples
 
-### Open / Close
-
-A door with a single animation:
+### One object with Open only
 
 ```text
-Interact_Open_DriverDoor
+[Open]Hood
 ```
 
-is enough to support opening and closing.
+Click once to open; click again to close by reversing the same clip.
 
-For separate opening and closing animations:
+### One object with Open and Close
 
 ```text
-Interact_Open_DriverDoor
-Interact_Close_DriverDoor
+[Open]DriverDoor
+[Close]DriverDoor
 ```
 
-Both clips use the same interaction ID:
+### Two linked doors
 
 ```text
-DriverDoor
+[Open_Doors]LeftDoor
+[Close_Doors]LeftDoor
+
+[Open_Doors]RightDoor
+[Close_Doors]RightDoor
 ```
 
-### Loop
-
-For a continuously animated object:
+### Linked looping fans
 
 ```text
-Interact_Loop_Fan
+[Loop_RadiatorFans]LeftFan
+[Loop_RadiatorFans]RightFan
 ```
-
-The first interaction starts the animation and the next interaction stops it.
