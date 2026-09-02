@@ -45,7 +45,7 @@ Examples of linked interactions:
 [Open_RDoors]RightDoorGlass
 ```
 
-`Group` is optional.
+`Group` is optional. `Close` action is optional. 
 
 The `ID` identifies an animation interaction and may contain underscores. It is part of the clip name; it is not the name of a GameObject.
 
