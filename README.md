@@ -3,6 +3,8 @@ Interact is a CarX Drift Racing Online mod that adds interactive animations to c
 
 Players can click doors, hoods, trunks, mirrors, fans, lights, and other vehicle objects to open, close, start, or stop animations.
 
+Full synchronization support between players, provided they have the same mods installed.
+
 ## It supports both standalone and linked interactions!
 For example, two doors or headlights can animate together. All interactions are synchronized in multiplayer, so other players can see your vehicle’s animations.
 
