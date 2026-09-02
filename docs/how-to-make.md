@@ -113,13 +113,6 @@ Example:
 
 A separate Close animation is not required. If only the Open animation exists, Interact plays that clip in reverse to close its animated target.
 
-### Loop setting
-
-Keep the `Loop` option disabled for Open clips.
-
-> **Note:** Interact forces Open clips to play once at runtime, regardless of the source clip's Loop setting.
-
----
 
 ## Close animation
 
@@ -136,23 +129,6 @@ For grouped clips, both the group and ID must match:
 [Open_Doors]LeftDoor
 [Close_Doors]LeftDoor
 ```
-
-The Close animation must go from the fully open state back to the closed state:
-
-```text
-First frame → Open
-Last frame  → Closed
-```
-
-The last pose of Open and the first pose of Close must match.
-
-### Loop setting
-
-Keep the `Loop` option disabled for Close clips.
-
-> **Note:** Interact forces Close clips to play once at runtime, regardless of the source clip's Loop setting.
-
----
 
 ## Loop animation
 
@@ -181,34 +157,6 @@ For grouped loops:
 Clicking the target of either interaction controls the whole `Lights` group.
 
 > **Note:** Interact enables looping for Legacy `Animation` clips at runtime. For `Animator`, Interact restarts the state as needed.
-
----
-
-## Animator setup
-
-If using an `Animator`, layer `0` must contain a state whose name exactly matches the clip name.
-
-Example:
-
-```text
-Clip:
-[Open]DriverDoor
-
-State:
-[Open]DriverDoor
-```
-
-Grouped example:
-
-```text
-Clip:
-[Open_Doors]LeftDoor
-
-State:
-[Open_Doors]LeftDoor
-```
-
-The same rule applies to Open, Close, and Loop animations.
 
 ---
 
