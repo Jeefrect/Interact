@@ -56,6 +56,8 @@ For an `Animator`, Interact reads the `AnimationClip` name. For Legacy `Animatio
 - An interaction ID must be unique within its group.
 - The same group must contain either `Open`/`Close` interactions or `Loop` interactions; do not mix both types.
 - The group name can be arbitrary, just like the ID - they’re simply names/identifiers.
+
+
 ---
 
 ## Linked groups
