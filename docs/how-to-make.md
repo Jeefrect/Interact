@@ -35,22 +35,25 @@ Examples of standalone interactions:
 [Loop]RotatingObject
 ```
 
-Examples of linked objects:
+Examples of linked interactions:
 
 ```text
-[Open_Doors]LeftDoor
-[Close_Doors]LeftDoor
+[Open_LDoors]LeftDoor
+[Open_LDoors]LeftDoorGlass
 
-[Open_Doors]RightDoor
-[Close_Doors]RightDoor
+[Open_RDoors]RightDoor
+[Open_RDoors]RightDoorGlass
 ```
 
-The `ID` identifies the clickable object and may contain underscores.
+The `ID` identifies an animation interaction and may contain underscores. It is part of the clip name; it is not the name of a GameObject.
 
-- Without a group, the interaction affects only its own object.
-- Objects with the same `Group` are switched together.
-- An object ID must be unique within its group.
+For an `Animator`, Interact reads the `AnimationClip` name. For Legacy `Animation`, it reads the `AnimationState` name, which normally matches the source `.anim` clip name.
+
+- Without a group, the clip controls only its own interaction.
+- Clips with the same `Group` are triggered together.
+- An interaction ID must be unique within its group.
 - The same group must contain either `Open`/`Close` interactions or `Loop` interactions; do not mix both types.
+- The group name can be arbitrary, just like the ID - they’re simply names/identifiers.
 
 The old format is still supported for compatibility, but does not support groups:
 
@@ -64,7 +67,7 @@ Interact_Loop_Fan
 
 ## Linked groups
 
-A group lets multiple independent objects react to one click.
+A group lets multiple independent animation interactions react to one click.
 
 Example: two doors that should open and close together:
 
@@ -78,7 +81,7 @@ Example: two doors that should open and close together:
 
 Clicking either door starts both door animations at the same time. Clicking again closes or reverses both doors.
 
-Each object still uses its own animation clip, so animation lengths may differ.
+Each interaction still uses its own animation clip, so clip lengths may differ.
 
 Groups also work with loops:
 
@@ -106,7 +109,7 @@ Example:
 [Open]Hood
 ```
 
-A separate Close animation is not required. If only the Open animation exists, Interact plays it in reverse to close the object.
+A separate Close animation is not required. If only the Open animation exists, Interact plays that clip in reverse to close its animated target.
 
 ### Loop setting
 
@@ -125,7 +128,7 @@ To use a separate closing animation, create a matching Close clip:
 [Close]DriverDoor
 ```
 
-For grouped objects, both the group and ID must match:
+For grouped clips, both the group and ID must match:
 
 ```text
 [Open_Doors]LeftDoor
@@ -173,7 +176,7 @@ For grouped loops:
 [Loop_Lights]RightLight
 ```
 
-Clicking either object controls the whole `Lights` group.
+Clicking the target of either interaction controls the whole `Lights` group.
 
 > **Note:** Interact enables looping for Legacy `Animation` clips at runtime. For `Animator`, Interact restarts the state as needed.
 
@@ -209,18 +212,18 @@ The same rule applies to Open, Close, and Loop animations.
 
 ## Object selection
 
-The Kino object must have at least one of the following on itself or its children:
+The GameObject that contains the `Animation` or `Animator` component must have at least one of the following on itself or its children:
 
 - `Collider` — trigger mode is recommended.
 - Enabled `Renderer`.
 
-This allows Interact to detect the object when the player points at it.
+Adding a `Collider` is recommended, but not required. If no collider is present, Interact uses the bounds of an enabled `Renderer` to detect the animated GameObject when the player points at it.
 
 ---
 
 ## Quick examples
 
-### One object with Open only
+### One interaction with Open only
 
 ```text
 [Open]Hood
@@ -228,7 +231,7 @@ This allows Interact to detect the object when the player points at it.
 
 Click once to open; click again to close by reversing the same clip.
 
-### One object with Open and Close
+### One interaction with Open and Close
 
 ```text
 [Open]DriverDoor
