@@ -20,8 +20,6 @@ Close
 Loop
 ```
 
-`Group` is optional.
-
 Examples of standalone interactions:
 
 ```text
@@ -46,6 +44,8 @@ Examples of linked interactions:
 [Open_RDoors]RightDoor
 [Open_RDoors]RightDoorGlass
 ```
+
+`Group` is optional.
 
 The `ID` identifies an animation interaction and may contain underscores. It is part of the clip name; it is not the name of a GameObject.
 
