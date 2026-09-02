@@ -8,4 +8,9 @@ Full synchronization support between players, provided they have the same mods i
 ## It supports both standalone and linked interactions!
 For example, two doors or headlights can animate together. All interactions are synchronized in multiplayer, so other players can see your vehicle’s animations.
 
+## Want to try the mod right now?
+Then give the RWYB Toyota Altezza by MOZ! 
+
+Download it for free (.knpp): [payhip](https://payhip.com/b/1UE43)
+
 ![CarX Interact Mod Logo](https://github.com/Jeefrect/Interact/blob/main/logo_with_banner.png)
