@@ -20,6 +20,8 @@ Close
 Loop
 ```
 
+![Docs Interact Mod](https://github.com/Jeefrect/Interact/blob/main/docs/doc-3.png)
+
 Examples of standalone interactions:
 
 ```text
@@ -47,7 +49,7 @@ Examples of linked interactions:
 
 `Group` is optional. `Close` action is optional. 
 
-The `ID` identifies an animation interaction and may contain underscores. It is part of the clip name; it is not the name of a GameObject.
+The `ID` is simply the name of your animation.
 
 For an `Animator`, Interact reads the `AnimationClip` name. For Legacy `Animation`, it reads the `AnimationState` name, which normally matches the source `.anim` clip name.
 
