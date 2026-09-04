@@ -13,6 +13,5 @@ Then give the RWYB Toyota Altezza by MOZ!
 
 Download it for free (.knpp): [payhip](https://payhip.com/b/1UE43)
 
-![CarX Interact Mod Logo](https://github.com/Jeefrect/Interact/blob/main/logo_with_banner.png)
-
 Video preview: https://www.youtube.com/watch?v=yDsGf8jqbz4
+![CarX Interact Mod Logo](https://github.com/Jeefrect/Interact/blob/main/logo_with_banner.png)
