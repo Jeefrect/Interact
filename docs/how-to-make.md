@@ -57,6 +57,7 @@ For an `Animator`, Interact reads the `AnimationClip` name. For Legacy `Animatio
 - The same group must contain either `Open`/`Close` interactions or `Loop` interactions; do not mix both types.
 - The group name can be arbitrary, just like the ID - they’re simply names/identifiers.
 
+![Docs Interact Mod](https://github.com/Jeefrect/Interact/blob/main/docs/doc-2.png)
 
 ---
 
@@ -155,17 +156,6 @@ For grouped loops:
 Clicking the target of either interaction controls the whole `Lights` group.
 
 > **Note:** Interact enables looping for Legacy `Animation` clips at runtime. For `Animator`, Interact restarts the state as needed.
-
----
-
-## Object selection
-
-The GameObject that contains the `Animation` or `Animator` component must have at least one of the following on itself or its children:
-
-- `Collider` — trigger mode is recommended.
-- Enabled `Renderer`.
-
-Adding a `Collider` is recommended, but not required. If no collider is present, Interact uses the bounds of an enabled `Renderer` to detect the animated GameObject when the player points at it.
 
 ---
 
