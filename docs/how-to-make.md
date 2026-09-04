@@ -1,8 +1,8 @@
 # Interact Animation Guide
 
-This guide describes how to make Kino custom objects compatible with Interact. 
+This guide describes how to make Kino custom objects compatible with Interact. The Interact mod triggers animations based on a specific naming format that it recognizes.
 
-The mod works with KINO custom objects and KINO car parts only!
+The mod works with KINO custom objects and KINO car parts only! 
 
 ## Clip naming
 
