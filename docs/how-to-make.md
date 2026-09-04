@@ -98,15 +98,7 @@ Clicking either fan starts both loops. Clicking again stops both.
 ---
 
 ## Open animation
-
-The Open animation must go from the closed state to the fully open state:
-
-```text
-First frame → Closed
-Last frame  → Open
-```
-
-Example:
+It refers to an “Open” animation for any object. It can be anything. Example:
 
 ```text
 [Open]Hood
