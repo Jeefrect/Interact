@@ -5,6 +5,9 @@ Players can click doors, hoods, trunks, mirrors, fans, lights, and other vehicle
 
 Full synchronization support between players, provided they have the same mods installed.
 
+> [!NOTE]
+> Download and install [KSL](https://github.com/trbflxr/ksl) before installing the mod.
+
 ## It supports both standalone and linked interactions!
 For example, two doors or headlights can animate together. All interactions are synchronized in multiplayer, so other players can see your vehicle’s animations.
 
