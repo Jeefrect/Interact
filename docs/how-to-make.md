@@ -74,6 +74,9 @@ Example: two doors that should open and close together:
 [Close_Doors]RightDoor
 ```
 
+
+
+
 Clicking either door starts both door animations at the same time. Clicking again closes or reverses both doors.
 
 Each interaction still uses its own animation clip, so clip lengths may differ.
@@ -86,6 +89,8 @@ Groups also work with loops:
 ```
 
 Clicking either fan starts both loops. Clicking again stops both.
+
+![Docs Interact Mod](https://github.com/Jeefrect/Interact/blob/main/docs/doc-1.png)
 
 ---
 
