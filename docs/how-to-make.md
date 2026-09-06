@@ -106,6 +106,7 @@ It refers to an “Open” animation for any object. It can be anything. Example
 
 A separate Close animation is not required. If only the Open animation exists, Interact plays that clip in reverse to close its animated target.
 
+If the interactive object isn't working for some reason, try adding a collider to it, though this is usually not necessary.
 
 ## Close animation
 
