@@ -65,7 +65,7 @@ For an `Animator`, Interact reads the `AnimationClip` name. For Legacy `Animatio
 
 ## Linked groups
 
-A group lets multiple independent animation interactions react to one click.
+A group lets multiple independent animation interactions react to one click. Groups simply link animations together. When one animation is triggered, all other animations in the same group are triggered automatically as well. That’s the only purpose of groups.
 
 Example: two doors that should open and close together:
 
