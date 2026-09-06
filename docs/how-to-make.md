@@ -180,6 +180,16 @@ Click once to open; click again to close by reversing the same clip.
 [Close_Doors]RightDoor
 ```
 
+### Linked doors + mirrors
+
+```text
+[Open_LDoor]LeftDoor
+[Close_LDoor]LeftDoorMirror
+
+[Open_RDoor]RightDoor
+[Close_RDoor]RightDoorMirror
+```
+
 ### Linked looping fans
 
 ```text
