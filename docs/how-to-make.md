@@ -4,6 +4,8 @@ This guide describes how to make Kino custom objects compatible with Interact. T
 
 The mod works with KINO custom objects and KINO car parts only! 
 
+Recommended Animation Setup in Unity for Interact Mod: [Animation-Recommendations.md](https://github.com/Jeefrect/Interact/blob/main/docs/Animation-Recommendations.md)
+
 ## Clip naming
 
 Use this naming format for new animations:
