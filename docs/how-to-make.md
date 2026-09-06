@@ -158,7 +158,7 @@ Clicking the target of either interaction controls the whole `Lights` group.
 ### One interaction with Open only
 
 ```text
-[Open]Hood
+[Open]HoodAnimation
 ```
 
 Click once to open; click again to close by reversing the same clip.
@@ -166,33 +166,33 @@ Click once to open; click again to close by reversing the same clip.
 ### One interaction with Open and Close
 
 ```text
-[Open]DriverDoor
-[Close]DriverDoor
+[Open]DriverDoorAnimation
+[Close]DriverDoorAnimation
 ```
 
 ### Two linked doors
 
 ```text
-[Open_Doors]LeftDoor
-[Close_Doors]LeftDoor
+[Open_Doors]LeftDoorAnimation
+[Close_Doors]LeftDoorAnimation
 
-[Open_Doors]RightDoor
-[Close_Doors]RightDoor
+[Open_Doors]RightDoorAnimation
+[Close_Doors]RightDoorAnimation
 ```
 
 ### Linked doors + mirrors
 
 ```text
-[Open_LDoor]LeftDoor
-[Close_LDoor]LeftDoorMirror
+[Open_LDoor]LeftDoorAnimation
+[Close_LDoor]LeftDoorMirrorAnimation
 
-[Open_RDoor]RightDoor
-[Close_RDoor]RightDoorMirror
+[Open_RDoor]RightDoorAnimation
+[Close_RDoor]RightDoorMirrorAnimation
 ```
 
 ### Linked looping fans
 
 ```text
-[Loop_RadiatorFans]LeftFan
-[Loop_RadiatorFans]RightFan
+[Loop_RadiatorFans]LeftFanAnimation
+[Loop_RadiatorFans]RightFanAnimation
 ```
