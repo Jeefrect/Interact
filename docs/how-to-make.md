@@ -106,7 +106,14 @@ It refers to an “Open” animation for any object. It can be anything. Example
 
 A separate Close animation is not required. If only the Open animation exists, Interact plays that clip in reverse to close its animated target.
 
-If the interactive object isn't working for some reason, try adding a collider to it, though this is usually not necessary.
+> **NOTE**
+>
+> If an interactive object isn't working for some reason, try adding a **Collider** to it and enabling **Is Trigger**. This is usually not necessary, but it can help in some cases.
+>
+> If you use a **Mesh Collider** on an object with a dynamic **Rigidbody**, make sure **Convex** is enabled. Unity/PhysX does not support concave Mesh Colliders on dynamic Rigidbody objects.
+>
+> Alternatively, set the **Rigidbody** to **Is Kinematic** if the object does not require dynamic physics.
+
 
 ## Close animation
 
