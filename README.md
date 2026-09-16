@@ -18,10 +18,6 @@ For more information check the [Interact Animation Guide](https://github.com/Jee
 > [!NOTE]
 > Download and install [KSL](https://github.com/trbflxr/ksl) before installing the mod.
 
-## It supports both standalone and linked interactions!
-
-For example, two doors or headlights can animate together. All interactions are synchronized in multiplayer, so other players can see your car’s animations.
-
 ## Want to try the mod right now?
 
 Then give the RWYB Toyota Altezza by MOZ a try!
