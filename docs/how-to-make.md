@@ -163,6 +163,107 @@ Clicking the target of either interaction controls the whole `Lights` group.
 
 ---
 
+## SpeedActive animation
+
+Use `SpeedActive` for animations whose position should automatically follow the vehicle's speed.
+
+Example:
+
+```text
+[SpeedActive]ActiveWing
+```
+
+The animation timeline represents the full movement range of the object:
+
+```text
+First frame  → position at the minimum speed
+Last frame   → position at the maximum speed
+```
+
+The **minimum speed** setting defines the speed at which the animation is at its **first frame**, while the **maximum speed** defines the speed at which it reaches its **last frame**.
+
+Between these two values, Interact automatically adjusts the animation position according to the current vehicle speed.
+
+For example, with the default range:
+
+```text
+Minimum speed: 100 km/h
+Maximum speed: 180 km/h
+```
+
+the animation position will be:
+
+```text
+100 km/h → First frame
+140 km/h → Halfway through the animation
+180 km/h → Last frame
+```
+
+Below the minimum speed, the animation remains at the first frame. Above the maximum speed, it remains at the last frame.
+
+The speed range can be changed in:
+
+```text
+Interact Mod → SpeedActive settings
+```
+
+> **NOTE**
+>
+> `SpeedActive` animations are controlled automatically by vehicle speed. They are **not clickable**, cannot be controlled with **F8**, and should **not be assigned to an interaction group**.
+>
+> `ActiveWing` is only an example ID. You can use any unique ID appropriate for your animation.
+---
+
+## NoInteract
+
+Use the `[NoInteract]` prefix on child objects that should **not be clickable** by Interact.
+
+By default, an interaction can use the objects under its interaction root as part of its clickable area. This can cause unrelated child meshes inside the same Kino object to trigger the interaction even though they are not intended to be interactive.
+
+Prefixing a child object with `[NoInteract]` tells Interact to exclude that object from interaction hit detection.
+
+Example:
+
+```text
+[Open]DoorCardKinoObject
+├── DoorCard_Trim
+├── DoorCard_Plastic
+├── [NoInteract]Speaker
+├── [NoInteract]WindowButtons
+└── [NoInteract]DecorativeParts
+```
+
+In this example:
+
+```text
+DoorCard_Trim       → Clickable
+DoorCard_Plastic    → Clickable
+Speaker             → Not clickable
+WindowButtons       → Not clickable
+DecorativeParts     → Not clickable
+```
+
+This is useful when a Kino object contains multiple child meshes, but only some of them should be able to trigger the interaction.
+
+> **NOTE**
+>
+> `[NoInteract]` only affects **Interact's clickable area / hit detection**. It does **not** disable the GameObject, remove its Collider, or prevent Unity animations from affecting it.
+>
+> If an object marked with `[NoInteract]` is animated by an `AnimationClip`, the animation can still move, rotate, scale, or otherwise modify that object normally. The prefix only prevents that object from being used as a clickable target for the interaction.
+
+For example, an object may still be part of the door animation while being excluded from clicking:
+
+```text
+Door
+├── DoorMesh
+├── Handle
+└── [NoInteract]InternalMechanism
+```
+
+`InternalMechanism` can still be animated together with the door, but clicking it will not trigger the interaction.
+
+---
+
 ## Quick examples
 
 ### One interaction with Open only
@@ -206,3 +307,21 @@ Click once to open; click again to close by reversing the same clip.
 [Loop_RadiatorFans]LeftFanAnimation
 [Loop_RadiatorFans]RightFanAnimation
 ```
+
+## Key Binds
+
+You can assign a key or key combination to any interactive object. To create a bind:
+
+1. Hold **Ctrl** and click the interactive object you want to bind.
+2. Press the key or key combination you want to assign.
+3. Press **Enter** to save.
+
+After saving, the assigned key or key combination can be used to trigger that interaction at any time.
+
+> **NOTE**
+>
+> **Ctrl** is the default key used to start binding and can be changed in the Interact Mod settings.
+>
+> Assigning a new bind replaces the previous bind for that interaction.
+>
+> Press **Esc** to cancel without saving.
