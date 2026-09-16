@@ -20,6 +20,7 @@ Supported actions:
 Open
 Close
 Loop
+SpeedActive
 ```
 
 ![Docs Interact Mod](https://github.com/Jeefrect/Interact/blob/main/docs/doc-3.png)
@@ -37,6 +38,8 @@ Examples of standalone interactions:
 
 [Loop]Fan
 [Loop]RotatingObject
+
+[SpeedActive]AeroWing
 ```
 
 Examples of linked interactions:
